@@ -1,3 +1,4 @@
+import { convertToKebabCase } from "../helpers/helpers";
 import { Attribute } from "../types/types";
 
 const SwatchAttribute: React.FC<Attribute> = ({
@@ -10,6 +11,12 @@ const SwatchAttribute: React.FC<Attribute> = ({
       {attr.items.map((item) => (
         <div
           key={item.value}
+          data-testid={
+            `cart-item-attribute-${convertToKebabCase(
+              attr.name
+            )}-${convertToKebabCase(attr.name)}` +
+            (item.value === attr.chosen ? "-selected" : "")
+          }
           onClick={() => {
             if (
               item.value === attr.chosen ||

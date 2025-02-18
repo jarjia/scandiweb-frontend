@@ -44,13 +44,11 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <Link to="/all">
-          <img
-            src="/logo.svg"
-            alt="shopping bag"
-            className="justify-self-center"
-          />
-        </Link>
+        <img
+          src="/logo.svg"
+          alt="shopping bag"
+          className="justify-self-center"
+        />
         <button
           data-testid="cart-btn"
           onClick={() => setCartOverlay(!cartOverlay)}
