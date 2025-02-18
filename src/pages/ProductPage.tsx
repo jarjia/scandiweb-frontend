@@ -145,8 +145,7 @@ const ProductPage = () => {
               });
             }
           }}
-          disabled
-          // disabled={!product.inStock}
+          disabled={!product.inStock}
           className={`${
             product.inStock
               ? "bg-link-hover hover:opacity-95 cursor-pointer"
