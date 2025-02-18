@@ -1,0 +1,78 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-primary: #1d1f22;
+  --color-link-hover: #5ece7b;
+  --color-out-of-stock: #8d8f9a;
+  --color-cart-overlay-back: #39374838;
+  --text-base-plus: 18px;
+  --shadow-product-card: 0px 4px 35px 0px #a8acb030;
+}
+
+@layer utilities {
+  .min-h-478px {
+    min-height: 478px;
+  }
+
+  .max-h-478px {
+    max-height: 478px;
+  }
+
+  .h-478px {
+    height: 478px;
+  }
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/fonts/Raleway-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Raleway-bold";
+  src: url("/fonts/Raleway-Medium.ttf");
+}
+
+#root {
+  margin: 0 auto;
+  padding: 7rem 5rem;
+  text-align: center;
+
+  color: #1d1f22;
+
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Raleway;
+}
+
+.raleway-bold {
+  font-family: Raleway-bold !important;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: lightgray;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-link-hover);
+}
+
+.parse h1,
+.parse h2,
+.parse h3,
+.parse h4,
+.parse h5,
+.parse h6 {
+  font-weight: 700 !important;
+  font-family: "Raleway-bold", sans-serif;
+  font-size: 18px !important;
+  margin-top: 12px;
+}
