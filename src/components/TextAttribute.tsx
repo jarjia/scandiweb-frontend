@@ -6,18 +6,19 @@ const TextAttribute: React.FC<Attribute> = ({
   handleUpdateAttribute,
   isProductPage = false,
 }) => {
+  const datatestid = isProductPage ? "product" : "cart-item";
+
   return (
     <div
-      data-testid={`cart-item-attribute-${convertToKebabCase(attr.name)}`}
+      data-testid={`${datatestid}-attribute-${convertToKebabCase(attr.name)}`}
       className="flex gap-1 py-0.5"
     >
       {attr.items.map((item) => (
         <div
           data-testid={
-            `cart-item-attribute-${convertToKebabCase(
-              attr.name
-            )}-${convertToKebabCase(attr.name)}` +
-            (item.value === attr.chosen ? "-selected" : "")
+            `${datatestid}-attribute-${convertToKebabCase(attr.name)}-${
+              item.value
+            }` + (item.value === attr.chosen ? "-selected" : "")
           }
           key={item.value}
           onClick={() => {
