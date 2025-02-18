@@ -7,6 +7,7 @@ import { getProductQuery } from "../graphql/queries";
 import { useParams } from "react-router-dom";
 import { Attributes, Product } from "../types/types";
 import { AppContext } from "../context/AppContext";
+import { convertToKebabCase } from "../helpers/helpers";
 
 type ProductWithDescription = Product &
   Partial<{ description: string; gallery: string[] }>;
@@ -100,7 +101,12 @@ const ProductPage = () => {
         {product.attributes &&
           product.attributes.map((attr) => {
             return (
-              <div key={attr.id} data-testid={`product-attribute-${attr.name}`}>
+              <div
+                key={attr.id}
+                data-testid={`product-attribute-${convertToKebabCase(
+                  attr.name
+                )}`}
+              >
                 <h3 className="uppercase raleway-bold text-lg">{attr.name}:</h3>
                 {attr.type === "text" ? (
                   <TextAttribute
