@@ -17,7 +17,7 @@ const TextAttribute: React.FC<Attribute> = ({
         <div
           data-testid={
             `${datatestid}-attribute-${convertToKebabCase(attr.name)}-${
-              item.value
+              item.displayValue
             }` + (item.value === attr.chosen ? "-selected" : "")
           }
           key={item.value}

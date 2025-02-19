@@ -18,7 +18,7 @@ const SwatchAttribute: React.FC<Attribute> = ({
           key={item.value}
           data-testid={
             `${datatestid}-attribute-${convertToKebabCase(attr.name)}-${
-              item.value
+              item.displayValue
             }` + (item.value === attr.chosen ? "-selected" : "")
           }
           onClick={() => {
