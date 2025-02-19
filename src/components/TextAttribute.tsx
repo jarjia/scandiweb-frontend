@@ -6,7 +6,7 @@ const TextAttribute: React.FC<Attribute> = ({
   handleUpdateAttribute,
   isProductPage = false,
 }) => {
-  const datatestid = isProductPage ? "product" : "cart-item";
+  // const datatestid = isProductPage ? "product" : "cart-item";
 
   return (
     <div
