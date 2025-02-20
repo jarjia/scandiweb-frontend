@@ -52,6 +52,10 @@ const ProductPage = () => {
 
   if (!product) return;
 
+  const disabled =
+    !product.inStock ||
+    product.attributes?.some((attr) => attr.chosen === null);
+
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-[60%_40%]">
       <div data-testid="product-gallery" className="flex gap-4">
@@ -142,16 +146,15 @@ const ProductPage = () => {
               });
             }
           }}
-          disabled
-          // disabled={!product.inStock}
+          disabled={disabled}
           className={`${
-            product.inStock
+            !disabled
               ? "bg-link-hover hover:opacity-95 cursor-pointer"
               : "cursor-not-allowed bg-gray-400"
-          } uppercase text-white text-base w-73 h-13`}
+          } text-white text-base w-73 h-13`}
           data-testid="add-to-cart"
         >
-          add to cart
+          ADD TO CART
         </button>
         <div className="parse" data-testid="product-description">
           {product.description && parse(product.description)}
