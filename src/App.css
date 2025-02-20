@@ -11,6 +11,7 @@
   --color-cart-overlay-back: #39374838;
   --text-base-plus: 18px;
   --shadow-product-card: 0px 4px 35px 0px #a8acb030;
+  --breakpoint-sm-custom: 800;
 }
 
 @layer utilities {
@@ -47,6 +48,12 @@
   font-size: 16px;
   font-weight: 600;
   font-family: Raleway;
+}
+
+@media screen and (max-width: 1000px) {
+  #root {
+    padding: 7rem 2rem;
+  }
 }
 
 .raleway-bold {

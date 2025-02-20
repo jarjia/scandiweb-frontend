@@ -16,7 +16,7 @@ const CategoryPage = () => {
         {category}
       </h1>
       {!loading && (
-        <div className="grid grid-cols-3 items-center gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 min-lg:grid-cols-3 items-center gap-12">
           {data.products.map((product: Product) => (
             <ProductCard key={product.id} product={product} />
           ))}

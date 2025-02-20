@@ -21,7 +21,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       <div className="relative flex items-center h-4/5 justify-center pb-2 max-h-84">
         {!product.inStock && (
           <p
-            className="absolute uppercase text-2xl text-out-of-stock z-4"
+            className="absolute md:text-2xl uppercase text-base text-out-of-stock z-4"
             style={{
               opacity: 1,
               textShadow: "2px 2px 2px rgba(0,0,0,1)",

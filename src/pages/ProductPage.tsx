@@ -54,7 +54,7 @@ const ProductPage = () => {
   if (!product) return;
 
   return (
-    <div className="w-full grid grid-cols-[60%_40%]">
+    <div className="w-full grid grid-cols-1 lg:grid-cols-[60%_40%]">
       <div data-testid="product-gallery" className="flex gap-4">
         <div className="flex flex-col items-center gap-2 min-w-20 max-w-20 max-h-20">
           {product.gallery.map((img, index) => (
@@ -96,7 +96,7 @@ const ProductPage = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-6 text-left w-full pl-28">
+      <div className="flex flex-col gap-6 text-left w-full lg:pl-28">
         <h1 className="text-3xl raleway-bold capitalize">{product.name}</h1>
         {product.attributes &&
           product.attributes.map((attr) => {

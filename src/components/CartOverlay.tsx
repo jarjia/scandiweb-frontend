@@ -45,7 +45,7 @@ const CartOverlay: React.FC<{ cartOverlay: boolean }> = ({ cartOverlay }) => {
     <aside
       data-testid="cart-overlay"
       style={{ display: cartOverlay ? "block" : "none" }}
-      className="fixed max-h-[80vh] max-w-96 min-w-80 overflow-y-scroll scrollbar z-[10] top-20 right-8 bg-white"
+      className="fixed max-h-[80vh] max-w-96 min-w-64 overflow-y-scroll scrollbar z-10 top-20 right-8 bg-white"
     >
       <div className="flex flex-col gap-4 items-start justify-between p-3 pt-4 h-full">
         <h3 className="capitalize text-left">
