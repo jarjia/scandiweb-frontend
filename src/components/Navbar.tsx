@@ -4,6 +4,7 @@ import CartIcon from "./icons/CartIcon";
 import CartOverlay from "./CartOverlay";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { clsx } from "../helpers/helpers";
 
 const Navbar = () => {
   const { cartItemLength, cartOverlay, setCartOverlay } =
@@ -24,11 +25,12 @@ const Navbar = () => {
           {categories.map((category) => (
             <li
               key={category}
-              className={`${
+              className={clsx(
+                "cursor-pointer",
                 params.category === category
                   ? "text-link-hover transition-colors border-b-2 border-b-link-hover"
                   : "hover:text-link-hover transition-colors border-b-2 border-b-transparent hover:border-b-link-hover"
-              } cursor-pointer`}
+              )}
             >
               <Link
                 to={`/${category}`}

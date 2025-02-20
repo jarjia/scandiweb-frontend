@@ -1,19 +1,24 @@
-import { convertToKebabCase } from "../helpers/helpers";
-import { Attribute } from "../types/types";
+import { clsx, convertToKebabCase } from "../helpers/helpers";
+import { Attribute, AttributeItem } from "../types/types";
 
 const SwatchAttribute: React.FC<Attribute> = ({
   attr,
   handleUpdateAttribute,
   isProductPage = false,
 }) => {
-  // const datatestid = isProductPage ? "product" : "cart-item";
+  const handleChangeAttribute = (item: AttributeItem) => {
+    if (item.value === attr.chosen || !isProductPage || !handleUpdateAttribute)
+      return;
+    handleUpdateAttribute(attr.id, item.value);
+  };
 
   return (
     <div data-testid={`product-attribute-${convertToKebabCase(attr.name)}`}>
       <h3
-        className={`${
-          isProductPage ? "text-lg uppercase" : "capitalize text-[1.5ch]"
-        } raleway-bold`}
+        className={clsx(
+          "raleway-bold",
+          isProductPage ? "text-lg uppercase" : "capitalize text-cart"
+        )}
       >
         {attr.name}:
       </h3>
@@ -26,31 +31,23 @@ const SwatchAttribute: React.FC<Attribute> = ({
                 item.value
               }` + (item.value === attr.chosen ? "-selected" : "")
             }
-            onClick={() => {
-              if (
-                item.value === attr.chosen ||
-                !isProductPage ||
-                !handleUpdateAttribute
-              )
-                return;
-              handleUpdateAttribute(attr.id, item.value);
-            }}
-            className={`${
+            onClick={() => handleChangeAttribute(item)}
+            className={clsx(
+              "border-(length:--border-1) flex items-center justify-center",
+              isProductPage ? "w-9 h-9 cursor-pointer" : "w-5 h-5",
               item.value === attr.chosen
                 ? "border-green-400"
                 : "border-transparent"
-            } ${
-              isProductPage ? "w-9 h-9 cursor-pointer" : "w-5 h-5"
-            }  border-[1px] flex items-center justify-center`}
+            )}
           >
             <div
-              className={`${
-                isProductPage ? "w-8 h-8" : "w-4 h-4"
-              } border-[1px] ${
+              className={clsx(
+                "border-(length:--border-1)",
+                isProductPage ? "w-8 h-8" : "w-4 h-4",
                 item.value === attr.chosen
                   ? "border-transparent"
                   : "border-gray-300"
-              }`}
+              )}
               style={{ background: item.value }}
             ></div>
           </div>

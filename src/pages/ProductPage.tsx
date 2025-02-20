@@ -7,6 +7,7 @@ import { getProductQuery } from "../graphql/queries";
 import { useParams } from "react-router-dom";
 import { Attributes, Product } from "../types/types";
 import { AppContext } from "../context/AppContext";
+import { clsx } from "../helpers/helpers";
 
 type ProductWithDescription = Product &
   Partial<{ description: string; gallery: string[] }>;
@@ -29,6 +30,7 @@ const ProductPage = () => {
           chosen: null,
         })),
       };
+
       setProduct(stateData);
     }
   }, [loading]);
@@ -48,6 +50,27 @@ const ProductPage = () => {
           ),
         }
     );
+  };
+
+  const handleAddToCart = () => {
+    if (!product?.inStock) return;
+
+    const { attributes = [], gallery, ...rest } = product;
+    const processedAttributes = attributes.map((attr) => ({
+      ...attr,
+      chosen: attr.chosen ?? attr.items?.[0]?.value,
+    }));
+
+    const cartItem = {
+      ...rest,
+      attributes: processedAttributes,
+      key: `${product.id}-${processedAttributes
+        .map((attr) => attr.chosen)
+        .join("-")}`,
+      gallery: gallery?.[0],
+    };
+
+    handleAddCartItem(cartItem);
   };
 
   if (!product) return;
@@ -72,12 +95,12 @@ const ProductPage = () => {
         <div className="relative h-fit w-full">
           <button
             onClick={() => handleSlide(slide + 1)}
-            className="z-4 absolute top-[calc(50%-32px)] cursor-pointer mr-3 right-0 flex items-center justify-center w-8 h-8 bg-[#000000BA]"
+            className="z-4 absolute top-[calc(50%-32px)] cursor-pointer mr-3 right-0 flex items-center justify-center w-8 h-8 bg-carousel-arrow"
           >
             <img src="/arrow.svg" />
           </button>
-          <div className="w-full max-h-478px min-h-478px h-full scrollbar overflow-y-scroll overflow-x-hidden">
-            <div className="flex items-center min-h-478px">
+          <div className="w-full max-h-[478px] min-h-[478px] h-full scrollbar overflow-y-scroll overflow-x-hidden">
+            <div className="flex items-center min-h-[478px]">
               {product.gallery.map((img, index) => (
                 <img
                   key={img}
@@ -93,7 +116,7 @@ const ProductPage = () => {
           </div>
           <button
             onClick={() => handleSlide(slide - 1)}
-            className="z-4 absolute ml-3 top-[calc(50%-32px)] cursor-pointer left-0 rotate-180 flex items-center justify-center w-8 h-8 bg-[#000000BA]"
+            className="z-4 absolute ml-3 top-[calc(50%-32px)] cursor-pointer left-0 rotate-180 flex items-center justify-center w-8 h-8 bg-carousel-arrow"
           >
             <img src="/arrow.svg" />
           </button>
@@ -129,29 +152,14 @@ const ProductPage = () => {
           </span>
         </div>
         <button
-          onClick={() => {
-            if (product.inStock) {
-              const cartData = { ...product };
-              delete cartData.description;
-              cartData.attributes = cartData.attributes?.map((attr) => ({
-                ...attr,
-                chosen: attr.chosen ? attr.chosen : attr.items[0]?.value,
-              }));
-              handleAddCartItem({
-                ...cartData,
-                key: `${cartData.id}${cartData.attributes
-                  ?.map((attr) => attr.chosen)
-                  .join("-")}`,
-                gallery: cartData.gallery[0],
-              });
-            }
-          }}
+          onClick={handleAddToCart}
           disabled={disabled}
-          className={`${
+          className={clsx(
+            "text-white text-base w-73 h-13",
             !disabled
               ? "bg-link-hover hover:opacity-95 cursor-pointer"
               : "cursor-not-allowed bg-gray-400"
-          } text-white text-base w-73 h-13`}
+          )}
           data-testid="add-to-cart"
         >
           ADD TO CART

@@ -5,7 +5,11 @@ import { Product } from "../types/types";
 import { AppContext } from "../context/AppContext";
 import { convertToKebabCase } from "../helpers/helpers";
 
-const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+type ProductCard = {
+  product: Product;
+};
+
+const ProductCard: React.FC<ProductCard> = ({ product }) => {
   const { handleAddCartItem } = useContext(AppContext);
   const [hovering, setHovering] = useState(false);
   const navigate = useNavigate();

@@ -4,28 +4,20 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 
+:root {
+  --border-1: 1px;
+}
+
 @theme {
   --color-primary: #1d1f22;
   --color-link-hover: #5ece7b;
   --color-out-of-stock: #8d8f9a;
   --color-cart-overlay-back: #39374838;
+  --color-carousel-arrow: #000000ba;
   --text-base-plus: 18px;
+  --text-cart: 1.5ch;
   --shadow-product-card: 0px 4px 35px 0px #a8acb030;
   --breakpoint-sm-custom: 800;
-}
-
-@layer utilities {
-  .min-h-478px {
-    min-height: 478px;
-  }
-
-  .max-h-478px {
-    max-height: 478px;
-  }
-
-  .h-478px {
-    height: 478px;
-  }
 }
 
 @font-face {

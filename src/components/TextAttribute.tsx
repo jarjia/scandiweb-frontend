@@ -1,19 +1,24 @@
-import { convertToKebabCase } from "../helpers/helpers";
-import { Attribute } from "../types/types";
+import { clsx, convertToKebabCase } from "../helpers/helpers";
+import { Attribute, AttributeItem } from "../types/types";
 
 const TextAttribute: React.FC<Attribute> = ({
   attr,
   handleUpdateAttribute,
   isProductPage = false,
 }) => {
-  // const datatestid = isProductPage ? "product" : "cart-item";
+  const handleChangeAttribute = (item: AttributeItem) => {
+    if (item.value === attr.chosen || !isProductPage || !handleUpdateAttribute)
+      return;
+    handleUpdateAttribute(attr.id, item.value);
+  };
 
   return (
     <div data-testid={`product-attribute-${convertToKebabCase(attr.name)}`}>
       <h3
-        className={`${
-          isProductPage ? "text-lg uppercase" : "capitalize text-[1.5ch]"
-        } raleway-bold`}
+        className={clsx(
+          "raleway-bold",
+          isProductPage ? "text-lg uppercase" : "capitalize text-cart"
+        )}
       >
         {attr.name}:
       </h3>
@@ -26,22 +31,14 @@ const TextAttribute: React.FC<Attribute> = ({
               }` + (item.value === attr.chosen ? "-selected" : "")
             }
             key={item.value}
-            onClick={() => {
-              if (
-                item.value === attr.chosen ||
-                !isProductPage ||
-                !handleUpdateAttribute
-              )
-                return;
-              handleUpdateAttribute(attr.id, item.value);
-            }}
-            className={`${
-              item.value === attr.chosen ? "bg-primary text-white" : ""
-            } ${
+            onClick={() => handleChangeAttribute(item)}
+            className={clsx(
+              "p-1 border-(length:--border-1) border-primary flex items-center justify-center raleway-bold",
               isProductPage
                 ? "w-16 h-11 text-base cursor-pointer"
-                : "min-w-6 min-h-6 text-[14px]"
-            } p-[1px] border-[1px] flex items-center justify-center border-primary raleway-bold`}
+                : "min-w-6 min-h-6 text-sm",
+              item.value === attr.chosen ? "bg-primary text-white" : ""
+            )}
           >
             {item.value}
           </div>

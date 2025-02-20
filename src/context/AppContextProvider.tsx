@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { AppContext } from "./AppContext";
 import { Product } from "../types/types";
+import { CART_LOCAL_STORAGE_ID } from "../helpers/consts";
 
 const AppContextProvider: React.FC<{ children: React.ReactNode }> = (props) => {
-  const saved = JSON.parse(localStorage.getItem("cart") || "[]");
+  const saved = JSON.parse(localStorage.getItem(CART_LOCAL_STORAGE_ID) || "[]");
   const [cart, setCart] = useState<Product[]>(saved);
   const [cartOverlay, setCartOverlay] = useState(false);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem(CART_LOCAL_STORAGE_ID, JSON.stringify(cart));
     }, 100);
 
     return () => clearTimeout(debounce);
@@ -64,7 +65,7 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = (props) => {
 
   const handlePlaceOrder = () => {
     setCart([]);
-    localStorage.removeItem("cart");
+    localStorage.removeItem(CART_LOCAL_STORAGE_ID);
     alert("Order placed!");
   };
 

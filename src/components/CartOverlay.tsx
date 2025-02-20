@@ -4,8 +4,13 @@ import TextAttribute from "./TextAttribute";
 import { AppContext } from "../context/AppContext";
 import { useMutation } from "@apollo/client";
 import { createOrderMutation } from "../graphql/mutations";
+import { clsx } from "../helpers/helpers";
 
-const CartOverlay: React.FC<{ cartOverlay: boolean }> = ({ cartOverlay }) => {
+type CartOverlay = {
+  cartOverlay: boolean;
+};
+
+const CartOverlay: React.FC<CartOverlay> = ({ cartOverlay }) => {
   const {
     cart: cartItems,
     cartItemLength,
@@ -131,11 +136,12 @@ const CartOverlay: React.FC<{ cartOverlay: boolean }> = ({ cartOverlay }) => {
           <button
             disabled={cartItems.length === 0}
             onClick={() => handleCreateOrder()}
-            className={`${
+            className={clsx(
+              "uppercase text-white bg-link-hover hover:opacity-95 w-full py-2.5",
               cartItems.length === 0
                 ? "grayscale-50 cursor-not-allowed"
                 : "cursor-pointer"
-            } uppercase text-white bg-link-hover hover:opacity-95 w-full py-2.5`}
+            )}
           >
             place order
           </button>
