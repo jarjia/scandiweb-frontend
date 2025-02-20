@@ -135,7 +135,7 @@ const ProductPage = () => {
               delete cartData.description;
               cartData.attributes = cartData.attributes?.map((attr) => ({
                 ...attr,
-                chosen: attr.items[0]?.value,
+                chosen: attr.chosen ? attr.chosen : attr.items[0]?.value,
               }));
               handleAddCartItem({
                 ...cartData,

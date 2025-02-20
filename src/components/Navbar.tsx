@@ -2,12 +2,12 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { categories } from "../helpers/consts";
 import CartIcon from "./icons/CartIcon";
 import CartOverlay from "./CartOverlay";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Navbar = () => {
-  const { cartItemLength } = useContext(AppContext);
-  const [cartOverlay, setCartOverlay] = useState(false);
+  const { cartItemLength, cartOverlay, setCartOverlay } =
+    useContext(AppContext);
   const params = useParams();
   const location = useLocation();
 

@@ -5,6 +5,7 @@ import { Product } from "../types/types";
 const AppContextProvider: React.FC<{ children: React.ReactNode }> = (props) => {
   const saved = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart, setCart] = useState<Product[]>(saved);
+  const [cartOverlay, setCartOverlay] = useState(false);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -58,6 +59,7 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = (props) => {
 
       return [{ ...cartItem, quantity: 1 }, ...prevCart];
     });
+    setCartOverlay(true);
   };
 
   const handlePlaceOrder = () => {
@@ -68,11 +70,13 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = (props) => {
 
   const contextValue = {
     cart,
+    cartOverlay,
     cartItemLength: cart.reduce((total, item) => total + item.quantity, 0),
     handleAddCartItem,
     handleUpdateQuantity,
     handleUpdateAttribute,
     handlePlaceOrder,
+    setCartOverlay,
   };
 
   return (
