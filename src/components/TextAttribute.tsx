@@ -21,10 +21,9 @@ const TextAttribute: React.FC<Attribute> = ({
         {attr.items.map((item) => (
           <div
             data-testid={
-              `product-attribute-${convertToKebabCase(
-                attr.name
-              )}-${convertToKebabCase(item.value.toString())}` +
-              (item.value === attr.chosen ? "-selected" : "")
+              `product-attribute-${convertToKebabCase(attr.name)}-${
+                item.value
+              }` + (item.value === attr.chosen ? "-selected" : "")
             }
             key={item.value}
             onClick={() => {

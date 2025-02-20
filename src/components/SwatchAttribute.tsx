@@ -22,10 +22,9 @@ const SwatchAttribute: React.FC<Attribute> = ({
           <div
             key={item.value}
             data-testid={
-              `product-attribute-${convertToKebabCase(
-                attr.name
-              )}-${convertToKebabCase(item.value.toString())}` +
-              (item.value === attr.chosen ? "-selected" : "")
+              `product-attribute-${convertToKebabCase(attr.name)}-${
+                item.value
+              }` + (item.value === attr.chosen ? "-selected" : "")
             }
             onClick={() => {
               if (
