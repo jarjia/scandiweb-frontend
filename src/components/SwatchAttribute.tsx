@@ -10,16 +10,16 @@ const SwatchAttribute: React.FC<Attribute> = ({
 
   return (
     <div
-      data-testid={`cart-item-attribute-${convertToKebabCase(attr.name)}`}
+      data-testid={`product-attribute-${convertToKebabCase(attr.name)}`}
       className="flex gap-1"
     >
       {attr.items.map((item) => (
         <div
           key={item.value}
           data-testid={
-            `cart-item-attribute-${convertToKebabCase(
+            `product-attribute-${convertToKebabCase(
               attr.name
-            )}-${convertToKebabCase(attr.name)}` +
+            )}-${convertToKebabCase(item.value.toString())}` +
             (item.value === attr.chosen ? "-selected" : "")
           }
           onClick={() => {

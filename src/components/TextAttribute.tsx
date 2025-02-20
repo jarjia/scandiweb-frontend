@@ -10,15 +10,15 @@ const TextAttribute: React.FC<Attribute> = ({
 
   return (
     <div
-      data-testid={`cart-item-attribute-${convertToKebabCase(attr.name)}`}
+      data-testid={`product-attribute-${convertToKebabCase(attr.name)}`}
       className="flex gap-1 py-0.5"
     >
       {attr.items.map((item) => (
         <div
           data-testid={
-            `cart-item-attribute-${convertToKebabCase(
+            `product-attribute-${convertToKebabCase(
               attr.name
-            )}-${convertToKebabCase(attr.name)}` +
+            )}-${convertToKebabCase(item.value.toString())}` +
             (item.value === attr.chosen ? "-selected" : "")
           }
           key={item.value}
