@@ -101,12 +101,7 @@ const ProductPage = () => {
         {product.attributes &&
           product.attributes.map((attr) => {
             return (
-              <div
-                key={attr.id}
-                data-testid={`product-attribute-${convertToKebabCase(
-                  attr.name
-                )}`}
-              >
+              <div key={attr.id}>
                 {attr.type === "text" ? (
                   <TextAttribute
                     attr={attr}
