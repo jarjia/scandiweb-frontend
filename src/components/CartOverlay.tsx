@@ -70,9 +70,6 @@ const CartOverlay: React.FC<{ cartOverlay: boolean }> = ({ cartOverlay }) => {
                   <>
                     {cartItem.attributes.map((attr) => (
                       <div key={attr.id} className="flex flex-col items-start">
-                        <h4 className="capitalize text-[1.5ch] text-left">
-                          {attr.name}:
-                        </h4>
                         {attr.type === "text" ? (
                           <TextAttribute attr={attr} />
                         ) : attr.type === "swatch" ? (

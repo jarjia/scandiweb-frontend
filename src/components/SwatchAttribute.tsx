@@ -13,6 +13,13 @@ const SwatchAttribute: React.FC<Attribute> = ({
       data-testid={`product-attribute-${convertToKebabCase(attr.name)}`}
       className="flex gap-1"
     >
+      <h3
+        className={`${
+          isProductPage ? "text-lg uppercase" : "capitalize text-[1.5ch]"
+        } raleway-bold`}
+      >
+        {attr.name}:
+      </h3>
       {attr.items.map((item) => (
         <div
           key={item.value}

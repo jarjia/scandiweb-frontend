@@ -107,7 +107,6 @@ const ProductPage = () => {
                   attr.name
                 )}`}
               >
-                <h3 className="uppercase raleway-bold text-lg">{attr.name}:</h3>
                 {attr.type === "text" ? (
                   <TextAttribute
                     attr={attr}
