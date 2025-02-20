@@ -26,7 +26,7 @@ const ProductPage = () => {
         ...data.product,
         attributes: data.product.attributes.map((item: Attributes) => ({
           ...item,
-          chosen: item.items[0].value,
+          chosen: null,
         })),
       };
       setProduct(stateData);
@@ -129,6 +129,10 @@ const ProductPage = () => {
             if (product.inStock) {
               const cartData = { ...product };
               delete cartData.description;
+              cartData.attributes = cartData.attributes?.map((attr) => ({
+                ...attr,
+                chosen: attr.items[0]?.value,
+              }));
               handleAddCartItem({
                 ...cartData,
                 key: `${cartData.id}${cartData.attributes

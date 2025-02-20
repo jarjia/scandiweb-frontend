@@ -21,7 +21,7 @@ export type Attributes = {
   id: number;
   type: string;
   name: string;
-  chosen: number | string;
+  chosen: number | string | null;
   items: {
     id?: number;
     displayValue: string | number;
@@ -37,7 +37,7 @@ export type Attribute = {
       value: string | number;
       displayValue: string | number;
     }[];
-    chosen: string | number;
+    chosen: string | number | null;
   };
   handleUpdateAttribute?: (id: number, chosen: string | number) => void;
   isProductPage?: boolean;
