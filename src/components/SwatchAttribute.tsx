@@ -16,7 +16,7 @@ const SwatchAttribute: React.FC<Attribute> = ({
     <div data-testid={`product-attribute-${convertToKebabCase(attr.name)}`}>
       <h3
         className={clsx(
-          "raleway-bold",
+          "raleway-bold text-left",
           isProductPage ? "text-lg uppercase" : "capitalize text-cart"
         )}
       >

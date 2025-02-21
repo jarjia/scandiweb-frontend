@@ -60,7 +60,6 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = (props) => {
 
       return [{ ...cartItem, quantity: 1 }, ...prevCart];
     });
-    setCartOverlay(true);
   };
 
   const handlePlaceOrder = () => {

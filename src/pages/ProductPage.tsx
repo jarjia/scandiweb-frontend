@@ -14,7 +14,7 @@ type ProductWithDescription = Product &
 
 const ProductPage = () => {
   const { product_id } = useParams();
-  const { handleAddCartItem } = useContext(AppContext);
+  const { handleAddCartItem, setCartOverlay } = useContext(AppContext);
   const { data, loading } = useQuery(getProductQuery, {
     variables: { product_id },
   });
@@ -22,7 +22,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState<ProductWithDescription | null>(null);
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && data) {
       const stateData = data.product.attributes && {
         ...data.product,
         attributes: data.product.attributes.map((item: Attributes) => ({
@@ -33,7 +33,7 @@ const ProductPage = () => {
 
       setProduct(stateData);
     }
-  }, [loading]);
+  }, [loading, data]);
 
   const handleSlide = (newSlide: number) => {
     if (product)
@@ -71,9 +71,11 @@ const ProductPage = () => {
     };
 
     handleAddCartItem(cartItem);
+    setCartOverlay(true);
   };
 
-  if (!product) return;
+  if (loading) return <div>Loading...</div>;
+  if (!data || !product) return <div>Product could not be fetched.</div>;
 
   const disabled =
     !product.inStock ||

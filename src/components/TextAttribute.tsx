@@ -16,7 +16,7 @@ const TextAttribute: React.FC<Attribute> = ({
     <div data-testid={`product-attribute-${convertToKebabCase(attr.name)}`}>
       <h3
         className={clsx(
-          "raleway-bold",
+          "raleway-bold text-left",
           isProductPage ? "text-lg uppercase" : "capitalize text-cart"
         )}
       >
@@ -33,7 +33,7 @@ const TextAttribute: React.FC<Attribute> = ({
             key={item.value}
             onClick={() => handleChangeAttribute(item)}
             className={clsx(
-              "p-1 border-(length:--border-1) border-primary flex items-center justify-center raleway-bold",
+              "select-none p-1 border-(length:--border-1) border-primary flex items-center justify-center raleway-bold",
               isProductPage
                 ? "w-16 h-11 text-base cursor-pointer"
                 : "min-w-6 min-h-6 text-sm",
