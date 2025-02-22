@@ -65,7 +65,6 @@ const AppContextProvider: React.FC<{ children: React.ReactNode }> = (props) => {
   const handlePlaceOrder = () => {
     setCart([]);
     localStorage.removeItem(CART_LOCAL_STORAGE_ID);
-    alert("Order placed!");
   };
 
   const contextValue = {
