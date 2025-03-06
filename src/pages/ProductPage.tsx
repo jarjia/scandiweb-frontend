@@ -83,14 +83,17 @@ const ProductPage = () => {
 
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-[60%_40%]">
-      <div data-testid="product-gallery" className="flex gap-4">
-        <div className="flex flex-col items-center gap-2 min-w-20 max-w-20 max-h-20">
+      <div
+        data-testid="product-gallery"
+        className="flex flex-col lg:flex-row gap-4"
+      >
+        <div className="flex flex-row flex-wrap w-full lg:flex-col lg:flex-nowrap items-center gap-2 lg:min-w-20 lg:max-w-20 lg:max-h-20">
           {product.gallery.map((img, index) => (
             <img
               key={img}
               src={img}
               onClick={() => handleSlide(index)}
-              className="cursor-pointer w-fit"
+              className="cursor-pointer max-h-20 min-w-20 max-w-20 lg:min-w-auto lg:max-w-auto lg:max-h-auto"
             />
           ))}
         </div>

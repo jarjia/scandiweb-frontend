@@ -20,7 +20,7 @@ const Navbar = () => {
           className="fixed top-0 left-0 z-9 w-screen h-screen bg-cart-overlay-back"
         ></div>
       )}
-      <nav className="grid grid-cols-2 md:grid-cols-3 items-center fixed top-0 left-0 w-screen h-20 px-21 bg-white z-10">
+      <nav className="grid grid-cols-2 md:grid-cols-3 items-center fixed top-0 left-0 w-screen h-20 md:px-21 px-2 bg-white z-10">
         <ul className="flex h-full justify-self-start">
           {categories.map((category) => (
             <li
